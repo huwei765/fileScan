@@ -60,19 +60,19 @@ app.use(function(err, req, res, next) {
 });
 
 var root_path = process.argv[2];
-var w_file = 'E:/list.html';
-var fileTypes = 'bmp,gif,jpg,png';
-var w_content = '<ol>\n' + getAllFiles(root_path).join('\n') + '\n</ol>';
+var listFile = 'E:/list.html';
+var fileTypes = 'png,jpg,gif,bmp';
+var listFileContent = '<!doctype html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>Image Files</title>\n</head>\n<body>\n<ol>\n' + getAllFiles(root_path).join('\n') + '\n</ol>\n</body>\n</html>';
 
-fs.readFile(root_path + w_file, function(err, data) {
+fs.readFile(root_path + listFile, function(err, data) {
 
     if (err && err.errno == 33) {
 
-        fs.open(w_file, 'w', 0666, function(e, fd) {
+        fs.open(listFile, 'w', 0666, function(e, fd) {
 
             if (e) { console.log(e); };
 
-            fs.write(fd, w_content, 0, 'utf8', function(e) {
+            fs.write(fd, listFileContent, 0, 'utf8', function(e) {
                 if (e) { console.log(e); };
                 fs.closeSync(fd);
             });
@@ -81,7 +81,7 @@ fs.readFile(root_path + w_file, function(err, data) {
 
     } else {
 
-        fs.writeFile(w_file, w_content, function(e) {
+        fs.writeFile(listFile, listFileContent, function(e) {
             if (e) { console.log(e); };
             console.log('Done, My Lord !');
         });

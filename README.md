@@ -7,7 +7,7 @@
 # Option
 
 1. **app.js 63 行**
-  <pre><code>var w_file = 'E:/list.html';
+  <pre><code>var listFile = 'E:/list.html';
   </code></pre>
   扫描完成后生成文件的路径、文件名。
 
