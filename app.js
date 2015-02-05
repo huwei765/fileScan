@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
 });
 
 var root_path = process.argv[2];
-var w_file = 'E:/list.html'
+var w_file = 'E:/list.html';
 var fileTypes = 'bmp,gif,jpg,png';
 var w_content = '<ol>\n' + getAllFiles(root_path).join('\n') + '\n</ol>';
 
