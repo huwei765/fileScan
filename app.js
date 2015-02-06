@@ -64,7 +64,7 @@ var listFile = 'E:/list.html';
 var fileTypes = 'png,jpg,gif,bmp';
 var listFileContent = '<!doctype html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>Image Files</title>\n</head>\n<body>\n<ol>\n' + getAllFiles(root_path).join('\n') + '\n</ol>\n</body>\n</html>';
 
-fs.readFile(root_path + listFile, function(err, data) {
+fs.readFile(listFile, function(err, data) {
 
     if (err && err.errno == 33) {
 

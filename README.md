@@ -4,7 +4,7 @@
 </code></pre>
 暂时无法直接扫描根目录，待解决。
 
-# Option
+# Options
 
 1.  **app.js 63 行**
     <pre><code>var listFile = 'E:/list.html';
