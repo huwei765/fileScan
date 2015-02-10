@@ -83,7 +83,7 @@ fs.readFile(listFile, function(err, data) {
 
         fs.writeFile(listFile, listFileContent, function(e) {
             if (e) { console.log(e); };
-            console.log('Done, My Lord !');
+            console.log('All Done, My Lord !');
         });
 
     };
@@ -96,15 +96,19 @@ function getAllFiles(root) {
         files = fs.readdirSync(root);
     
     files.forEach(function(file) {
-        var pathname = root + '/' + file,
-            stat = fs.lstatSync(pathname);
+        var pathname = root + '/' + file;
+        if ( pathname.indexOf('System Volume Information') == -1 && pathname.indexOf('$Recycle') == -1 && pathname.indexOf('.sys') == -1 && pathname.indexOf('MSOCache') == -1 && pathname.indexOf('latest_stat.xml') == -1 && pathname.indexOf('CrashReports') == -1 && pathname.indexOf('Microsoft') == -1 && pathname.indexOf('ElevatedDiagnostics') == -1 && pathname.indexOf('Windows') == -1 ) {
 
-        if (!stat.isDirectory()) {
-            if (isFileType(file, fileTypes)) {
-                res.push('<li><a href="file:///' + pathname + '" target="_blank">' + file + '</a></li>');
+            var stat = fs.lstatSync(pathname);
+
+            if (!stat.isDirectory()) {
+                if (isFileType(file, fileTypes)) {
+                    res.push('<li><a href="file:///' + pathname + '" target="_blank">' + file + '</a></li>');
+                };
+            } else {
+                res = res.concat(getAllFiles(pathname));
             };
-        } else {
-            res = res.concat(getAllFiles(pathname));
+
         };
 
     });
