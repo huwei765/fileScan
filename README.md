@@ -2,7 +2,6 @@
 
 <pre><code>node app.js F:/movie
 </code></pre>
-暂时无法直接扫描根目录，待解决。
 
 # Options
 
