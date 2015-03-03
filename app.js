@@ -94,16 +94,20 @@ function getAllFiles(root) {
 
     var res = [],
         files = fs.readdirSync(root);
+
+    if ( root.charAt(root.length - 1) !== '/' ) { root = root + '/'; };
     
     files.forEach(function(file) {
-        var pathname = root + '/' + file;
+
+        var pathname = root + file;
+
         if ( pathname.indexOf('System Volume Information') == -1 && pathname.indexOf('$Recycle') == -1 && pathname.indexOf('$RECYCLE') == -1 && pathname.indexOf('.sys') == -1 && pathname.indexOf('MSOCache') == -1 && pathname.indexOf('latest_stat.xml') == -1 && pathname.indexOf('CrashReports') == -1 && pathname.indexOf('Microsoft') == -1 && pathname.indexOf('ElevatedDiagnostics') == -1 && pathname.indexOf('Windows') == -1 ) {
 
             var stat = fs.lstatSync(pathname);
 
             if (!stat.isDirectory()) {
                 if (isFileType(file, fileTypes)) {
-                    res.push('<li><a href="file:///' + pathname + '" target="_blank">' + file + '</a></li>');
+                    res.push('<li><a href="' + pathname + '" target="_blank">' + file + '</a></li>');
                 };
             } else {
                 res = res.concat(getAllFiles(pathname));
